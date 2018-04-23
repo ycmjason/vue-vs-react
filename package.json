@@ -4,13 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run clean && parcel src/index.html",
+    "build": "npm run clean && parcel build src/index.html",
+    "clean": "/bin/rm -rf .cache dist",
+    "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Jason Yu <jason.yu@thehutgroup.com>",
   "license": "ISC",
   "devDependencies": {
+    "@vue/component-compiler-utils": "^1.0.0",
     "firebase-tools": "^3.18.4",
-    "parcel-bundler": "^1.7.1"
+    "parcel-bundler": "^1.7.1",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "dependencies": {
+    "firebase": "^4.13.1",
+    "vue": "^2.5.16",
+    "vue-hot-reload-api": "^2.3.0"
   }
 }
