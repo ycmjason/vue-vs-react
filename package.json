@@ -1,0 +1,16 @@
+{
+  "name": "vue-vs-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jason Yu <jason.yu@thehutgroup.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "firebase-tools": "^3.18.4",
+    "parcel-bundler": "^1.7.1"
+  }
+}
