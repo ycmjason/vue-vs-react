@@ -1,13 +1,13 @@
 <template>
   <main v-if="vue && react">
     <section class="vue" :style="flexBasis(ratios.vue)">
-      Vue
-      <TransitioningNumber :number="vue.stars"/>
+      <img src="../assets/vue.png" class="logo">
+      <TransitioningNumber :number="vue.stars" class="vue stars"></TransitioningNumber>
     </section>
     <section class="sep"></section>
     <section class="react" :style="flexBasis(ratios.react)">
-      React
-      <TransitioningNumber :number="react.stars"/>
+      <img src="../assets/react.svg" class="logo">
+      <TransitioningNumber :number="react.stars" class="react stars"></TransitioningNumber>
     </section>
   </main>
 </template>
@@ -40,7 +40,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$vue-color: #47B784;
+$react-color: #66DBF9;
+
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon');
+
+.vue.stars {
+  color: $vue-color;
+}
+
+.react.stars {
+  color: $react-color;
+}
+.stars {
+  font-size: 2rem;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+.vue.stars::before, .react.stars::before {
+  content: '★ ';
+}
+
 main {
   width: 100vw;
   height: 100vh;
@@ -57,15 +78,29 @@ section {
   flex-basis: 50%;
   transition: flex-basis 2s;
   flex-shrink: 1;
+  flex-direction: column;
+}
+
+.sep {
+  background: #efefef;
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  max-width: 80vw;
+  max-height: 26vh;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .vue {
-  background: #4BC69D;
+  background: lighten($vue-color, 25%);
   color: white;
 }
 
 .react {
-  background: #43DAF9;
+  background: lighten($react-color, 20%);
 }
 
 .sep {
@@ -74,7 +109,7 @@ section {
   flex-shrink: 0;
 }
 
-@media only screen and (min-width: 400px)  {
+@media only screen and (min-width: 812px)  {
   main {
     flex-direction: row;
   }

@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      displayNumber: 0,
+      displayNumber: this.number,
       cancel: () => {},
     };
   },
