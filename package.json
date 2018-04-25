@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run clean && parcel src/index.html",
-    "build": "npm run clean && parcel build src/index.html",
+    "build": "npm run clean && parcel build src/index.html --no-minify",
     "clean": "/bin/rm -rf .cache dist",
     "deploy": "npm run build && firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
