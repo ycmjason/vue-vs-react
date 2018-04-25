@@ -13,7 +13,4 @@ db.settings({
   timestampsInSnapshots: true 
 });
 
-.get().then(s => console.log(s.));
-export default {
-  repoSnapshots: db.collection('repo-snapshots'),
-};
+export const repoSnapshots = db.collection('repo-snapshots');

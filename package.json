@@ -15,6 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "@vue/component-compiler-utils": "^1.0.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
     "firebase-tools": "^3.18.4",
     "parcel-bundler": "^1.7.1",
     "vue-template-compiler": "^2.5.16"
