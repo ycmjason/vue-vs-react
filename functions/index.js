@@ -23,5 +23,5 @@ exports.makeSnapshot = functions.https.onRequest((request, response) => {
     getRepo('vuejs', 'vue').then(addRepoSnapshot),
     getRepo('facebook', 'react').then(addRepoSnapshot),
   ];
-  return Promise.all(promises).then(() => response.send("Done"));
+  return Promise.all(promises).then(() => response.send("Done")).catch(console.error);
 });
