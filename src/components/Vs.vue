@@ -109,7 +109,7 @@ section {
   flex-shrink: 0;
 }
 
-@media only screen and (min-width: 812px)  {
+@media only screen and (min-width: 100vh)  {
   main {
     flex-direction: row;
   }
