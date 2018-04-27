@@ -44,7 +44,7 @@ export default {
       });
     },
   },
-  created() {
+  mounted() {
     this.animateFrom(this.displayNumber, this.number);
   },
   watch: {
