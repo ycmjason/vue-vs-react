@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd functions && npm i",
     "dev": "npm run clean && parcel src/index.html",
     "build": "npm run clean && parcel build src/index.html --no-minify",
     "clean": "/bin/rm -rf .cache dist",
