@@ -1,11 +1,12 @@
 <template>
   <main v-if="vue && react">
-    <section class="vue" :class="{ won: vue.stars > react.stars }" :style="flexBasis(ratios.vue)">
+    <audio ref="audio" src="../assets/congratulations.mp3" loop></audio>
+    <section class="vue" :class="{ won: vueWon }" :style="flexBasis(ratios.vue)">
       <img src="../assets/vue.png" class="logo">
       <TransitioningNumber :number="vue.stars" class="stars"></TransitioningNumber>
     </section>
     <section class="sep"></section>
-    <section class="react" :class="{ lost: vue.stars > react.stars }" :style="flexBasis(ratios.react)">
+    <section class="react" :class="{ lost: vueWon }" :style="flexBasis(ratios.react)">
       <img src="../assets/react.svg" class="logo">
       <TransitioningNumber :number="react.stars" class="stars"></TransitioningNumber>
     </section>
@@ -24,7 +25,21 @@ export default {
   methods: {
     flexBasis: v => ({ flexBasis: v + '%' }),
   },
+  watch: {
+    vueWon(won) {
+      const { audio } = this.$refs;
+      if (won) {
+        audio.currentTime = 0;
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    },
+  },
   computed: {
+    vueWon() {
+      return this.vue.stars > this.react.stars;
+    },
     ratios() {
       if (!this.vue || !this.react) return {};
       const vueStars = this.vue.stars - cutoff;
@@ -130,5 +145,9 @@ section {
   main {
     flex-direction: row;
   }
+}
+
+audio:not([controls]) {
+  display: none;
 }
 </style>
