@@ -1,13 +1,13 @@
 <template>
   <main v-if="vue && react">
-    <section class="vue" :style="flexBasis(ratios.vue)">
+    <section class="vue" :class="{ won: vue.stars > react.stars }" :style="flexBasis(ratios.vue)">
       <img src="../assets/vue.png" class="logo">
-      <TransitioningNumber :number="vue.stars" class="vue stars"></TransitioningNumber>
+      <TransitioningNumber :number="vue.stars" class="stars"></TransitioningNumber>
     </section>
     <section class="sep"></section>
-    <section class="react" :style="flexBasis(ratios.react)">
+    <section class="react" :class="{ lost: vue.stars > react.stars }" :style="flexBasis(ratios.react)">
       <img src="../assets/react.svg" class="logo">
-      <TransitioningNumber :number="react.stars" class="react stars"></TransitioningNumber>
+      <TransitioningNumber :number="react.stars" class="stars"></TransitioningNumber>
     </section>
   </main>
 </template>
@@ -46,11 +46,11 @@ $react-color: #66DBF9;
 
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon');
 
-.vue.stars {
+.vue .stars {
   color: $vue-color;
 }
 
-.react.stars {
+.react .stars {
   color: $react-color;
 }
 .stars {
@@ -58,11 +58,12 @@ $react-color: #66DBF9;
   font-family: 'Do Hyeon', sans-serif;
 }
 
-.vue.stars::before, .react.stars::before {
+.stars::before {
   content: '★ ';
 }
 
 main {
+  z-index: 1;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -79,6 +80,7 @@ section {
   transition: flex-basis 2s;
   flex-shrink: 1;
   flex-direction: column;
+  position: relative;
 }
 
 .sep {
@@ -94,13 +96,28 @@ section {
   margin-top: 1em;
 }
 
-.vue {
-  background: lighten($vue-color, 25%);
-  color: white;
+.vue::before, .react::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 2s;
 }
 
-.react {
-  background: lighten($react-color, 20%);
+.vue.won::before, .react.lost::before {
+  opacity: 0;
+}
+
+.vue::before {
+  background: lighten($vue-color, 25%);
+}
+
+.react::before {
+  background: lighten($react-color, 25%);
 }
 
 .sep {

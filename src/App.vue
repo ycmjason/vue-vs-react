@@ -1,5 +1,6 @@
 <template>
   <main>
+    <Fireworks></Fireworks>
     <Vs :vue="vue" :react="react"/>
   </main>
 </template>
@@ -7,10 +8,12 @@
 <script>
 import repoSnapshots from './services/repoSnapshots';
 import Vs from './components/Vs.vue';
+import Fireworks from './components/Fireworks.vue';
 
 export default {
   components: {
     Vs,
+    Fireworks,
   },
   created() {
     repoSnapshots.subscribe(snapshots => this.snapshots = snapshots);
