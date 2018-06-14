@@ -15,7 +15,7 @@
 <script>
 import TransitioningNumber from './TransitioningNumber.vue';
 
-const cutoff = 60000;
+const cutoff = 95000;
 export default {
   props: ['vue', 'react'],
   components: {
