@@ -12,6 +12,9 @@ export default {
   components: {
     Vs,
   },
+  created() {
+    repoSnapshots.subscribe(snapshots => this.snapshots = snapshots);
+  },
   data() {
     return {
       snapshots: [],
@@ -42,9 +45,6 @@ export default {
       };
     },
   },
-  created() {
-    repoSnapshots.subscribe(snapshots => this.snapshots = snapshots);
-  }
 }
 </script>
 
