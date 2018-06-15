@@ -1,9 +1,9 @@
 <template>
   <main>
-    <img v-if="muted" class="muteControl" src="../assets/unmute.svg" @click="muted = false">
-    <img v-else class="muteControl" src="../assets/mute.svg" @click="muted = true">
+    <img v-if="muted" class="muteControl" src="../assets/unmute.svg" @click="unmute()">
+    <img v-else class="muteControl" src="../assets/mute.svg" @click="mute()">
 
-    <audio ref="audio" :src="src" loop muted></audio>
+    <audio ref="audio" :src="src" loop muted autoplay></audio>
   </main>
 </template>
 
@@ -12,18 +12,29 @@ export default {
   props: ['play', 'src'],
   data: () => ({
     muted: true,
+    playing: false,
   }),
   mounted() {
     this.$refs.audio.muted = this.muted;
   },
   watch: {
     play() {
-      const { audio } = this.$refs;
-      audio.currentTime = 0;
-      audio[this.play? 'play': 'pause']();
+      this.$refs.audio.currentTime = 0;
     },
     muted() {
       this.$refs.audio.muted = this.muted;
+    },
+  },
+  methods: {
+    mute() {
+      this.muted = true; 
+    },
+    unmute() {
+      this.muted = false;
+      if (!this.playing) {
+        this.playing = true;
+        this.$refs.audio.play();
+      }
     },
   },
 };
