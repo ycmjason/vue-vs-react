@@ -3,7 +3,7 @@
     <img v-if="muted" class="muteControl" src="../assets/unmute.svg" @click="muted = false">
     <img v-else class="muteControl" src="../assets/mute.svg" @click="muted = true">
 
-    <audio ref="audio" :src="src" loop></audio>
+    <audio ref="audio" :src="src" loop muted></audio>
   </main>
 </template>
 
