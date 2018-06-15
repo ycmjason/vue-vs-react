@@ -1,6 +1,6 @@
 <template>
   <main v-if="vue && react">
-    <audio ref="audio" src="../assets/congratulations.mp3" loop></audio>
+    <Audio :play="vueWon" :src="congratulationsMP3"></Audio>
     <section class="vue" :class="{ won: vueWon }" :style="flexBasis(ratios.vue)">
       <img src="../assets/vue.png" class="logo">
       <TransitioningNumber :number="vue.stars" class="stars"></TransitioningNumber>
@@ -15,26 +15,21 @@
 
 <script>
 import TransitioningNumber from './TransitioningNumber.vue';
+import Audio from './Audio.vue';
+import congratulationsMP3 from '../assets/congratulations.mp3';
 
 const cutoff = 95000;
 export default {
   props: ['vue', 'react'],
+  data: () => ({
+    congratulationsMP3,
+  }),
   components: {
     TransitioningNumber,
+    Audio,
   },
   methods: {
     flexBasis: v => ({ flexBasis: v + '%' }),
-  },
-  watch: {
-    vueWon(won) {
-      const { audio } = this.$refs;
-      if (won) {
-        audio.currentTime = 0;
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    },
   },
   computed: {
     vueWon() {
@@ -145,9 +140,5 @@ section {
   main {
     flex-direction: row;
   }
-}
-
-audio:not([controls]) {
-  display: none;
 }
 </style>
